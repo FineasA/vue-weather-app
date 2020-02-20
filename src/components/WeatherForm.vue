@@ -23,11 +23,12 @@
 
 <script>
 import { EventBus } from "../main.js";
+import { config } from "../../config.js";
 
 export default {
   data() {
     return {
-      API_KEY: "sensitive",
+      API_KEY: config.API_KEY,
       city: "",
       units: "",
       weatherInfo: {
