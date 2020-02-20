@@ -27,7 +27,7 @@ import { EventBus } from "../main.js";
 export default {
   data() {
     return {
-      API_KEY: "c41278b63a33e456e869d11ff99c94c1",
+      API_KEY: "sensitive",
       city: "",
       units: "",
       weatherInfo: {
