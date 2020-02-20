@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent>
+  <form v-on:submit.prevent class="animated bounce delay-0.5s">
     <div class="form-group">
       <span>
         <label for="city">Enter City</label>
@@ -30,7 +30,7 @@ export default {
     return {
       API_KEY: config.API_KEY,
       city: "",
-      units: "",
+      units: "imperial",
       weatherInfo: {
         cityName: "",
         weatherCondition: "",
@@ -42,18 +42,13 @@ export default {
         tempMax: 0,
         unitSymbol: "",
         icon: ""
-      },
-      iconLoaded: false
+      }
     };
   },
   methods: {
-    loadTimer() {
-      setTimeout(() => {
-        this.iconLoaded = true;
-      }, 3000);
-      EventBus.$emit("iconLoaded");
-    },
     submitCity() {
+      this.$emit("icon-loading");
+
       if (this.units === "imperial") {
         this.weatherInfo.unitSymbol = "F";
       } else if (this.units === "metric") {
@@ -89,8 +84,12 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          if (error) {
+            console.log("we got in here");
+            EventBus.$emit("error-occurred", error);
+            // return;
+          }
         });
-      this.loadTimer();
       console.log("WeatherInfo: ", this.weatherInfo);
       EventBus.$emit("weatherInfo", this.weatherInfo);
       EventBus.$emit("citySelected", this.weatherInfo);
