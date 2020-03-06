@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-flex justify-content-center vertical-center">
+  <div class="container d-flex justify-content-around vertical-center">
     <div class="row">
       <h2 class="title-app animated bounce delay-0.5s">Weather App</h2>
       <hr />
